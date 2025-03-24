@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 
@@ -77,6 +78,21 @@ public class QAJobsPage {
 
         // Tüm kartlar doğru filtrelenmişse true döndür
         return true;
+    }
+
+    public void hoverAndClickViewRole() throws InterruptedException {
+        Thread.sleep(15000);
+        // Butonun bulunduğu iş ilanını seçin
+        WebElement jobCard = driver.findElement(By.xpath("//*[@id=\"jobs-list\"]/div[1]/div"));
+        jobCard.click();
+        Thread.sleep(15000);
+        // Fareyi jobCard üzerine getirin (hover)
+        Actions actions = new Actions(driver);
+        actions.moveToElement(jobCard).perform();
+
+        // Görünen View Role butonunu seçin ve tıklayın
+        WebElement viewRoleButton = driver.findElement(By.xpath("//*[@id=\"jobs-list\"]/div[1]/div/a"));
+        viewRoleButton.click();
     }
 
 

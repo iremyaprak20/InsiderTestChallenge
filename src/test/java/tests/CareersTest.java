@@ -46,6 +46,23 @@ public class CareersTest extends BaseTest {
                 "No QA jobs are present for the selected location and department!");
     }
 
+    @Test
+    public void testCase4_VerifyJobDetails() {
+        QAJobsPage qaJobsPage = new QAJobsPage(driver);
+
+        // Step 1: Navigate to QA Jobs page
+        driver.get("https://useinsider.com/careers/quality-assurance/");
+
+        qaJobsPage.goAllQAJobs();
+
+        // Step 2: Filter jobs
+        qaJobsPage.filterJobs("All", "Quality Assurance");
+
+        // Step 3: Verify each job's details (Position, Department, Location)
+        Assert.assertTrue(qaJobsPage.areJobsFilteredCorrectly("Istanbul, Turkey", "Quality Assurance"),
+                "Jobs do not match the selected filters (Position, Department, Location)!");
+    }
+
 
 
 }
