@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CareersPage;
 import pages.HomePage;
+import pages.QAJobsPage;
 import utils.BaseTest;
 
 public class CareersTest extends BaseTest {
@@ -26,6 +27,23 @@ public class CareersTest extends BaseTest {
         // Step 2: Verify Careers page sections are displayed
         Assert.assertTrue(careersPage.areCareerSectionsDisplayed(),
                 "Career page sections (Locations, Teams, Life at Insider) are not displayed!");
+    }
+
+    @Test
+    public void testCase3_FilterQAJobsByLocationAndDepartment() {
+        QAJobsPage qaJobsPage = new QAJobsPage(driver);
+
+        // Step 1: Navigate to QA Jobs page
+        driver.get("https://useinsider.com/careers/quality-assurance/");
+
+        qaJobsPage.goAllQAJobs();
+
+        // Step 2: Filter jobs
+        qaJobsPage.filterJobs("Istanbul, Turkey", "Quality Assurance");
+
+        // Step 3: Verify job list is present
+        Assert.assertTrue(qaJobsPage.areJobsFilteredCorrectly("Istanbul, Turkey", "Quality Assurance"),
+                "No QA jobs are present for the selected location and department!");
     }
 
 
