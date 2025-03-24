@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -93,6 +94,42 @@ public class QAJobsPage {
         // Görünen View Role butonunu seçin ve tıklayın
         WebElement viewRoleButton = driver.findElement(By.xpath("//*[@id=\"jobs-list\"]/div[1]/div/a"));
         viewRoleButton.click();
+    }
+
+    public void verifyRedirectedURLInNewTab() {
+        // Mevcut pencerenin handle'ını al
+        String mainWindow = driver.getWindowHandle();
+
+
+        // Tüm pencere handle'larını al
+        for (String handle : driver.getWindowHandles()) {
+            if (!handle.equals(mainWindow)) {
+                // Yeni pencereye geçiş yap
+                driver.switchTo().window(handle);
+
+                // Yeni pencerenin URL'sini al
+                String currentURL = driver.getCurrentUrl();
+
+                // Beklenen URL'nin başlangıç kısmını tanımla
+                String expectedURLStart = "https://jobs.lever.co/useinsider";
+
+                // URL kontrolü yap
+                if (currentURL.startsWith(expectedURLStart)) {
+                    System.out.println("Redirected to the correct URL: " + currentURL);
+                } else {
+                    System.out.println("URL is incorrect! Actual URL: " + currentURL);
+                }
+
+                // Testin başarısını doğrula
+                Assert.assertTrue(currentURL.startsWith(expectedURLStart), "The redirected URL is incorrect!");
+
+                // İşlemler tamamlandıktan sonra yeni pencereyi kapat
+                driver.close();
+
+                // Ana pencereye geri dön
+                driver.switchTo().window(mainWindow);
+            }
+        }
     }
 
 

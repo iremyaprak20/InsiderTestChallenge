@@ -63,6 +63,21 @@ public class CareersTest extends BaseTest {
                 "Jobs do not match the selected filters (Position, Department, Location)!");
     }
 
+    @Test
+    public void testCase5_CheckLeverApplicationForm() throws InterruptedException {
+        QAJobsPage qaJobsPage = new QAJobsPage(driver);
+
+        // Step 1: Navigate to QA Jobs page
+        driver.get("https://useinsider.com/careers/quality-assurance/");
+        qaJobsPage.goAllQAJobs();
+        qaJobsPage.filterJobs("All", "Quality Assurance");
+
+        // Step 2: Click 'View Role' button for the first job
+        qaJobsPage.hoverAndClickViewRole();
+
+        qaJobsPage.verifyRedirectedURLInNewTab();
+    }
+
 
 
 }
