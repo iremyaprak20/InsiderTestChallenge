@@ -11,6 +11,7 @@ public class HomePage {
     private By companyMenu = By.xpath("//a[@id='navbarDropdownMenuLink' and contains(text(), 'Company')]");
     private By careersOption = By.xpath("//a[contains(@href, '/careers/') and text()='Careers']");
 
+
     // Constructor
     public HomePage(WebDriver driver){
         this.driver = driver;
@@ -22,6 +23,7 @@ public class HomePage {
         driver.findElement(careersOption).click();
     }
 
+    // Title'a göre kontrol
     public boolean isHomePageOpened() {
         return driver.getTitle().contains("Insider");
     }

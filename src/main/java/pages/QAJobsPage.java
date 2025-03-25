@@ -19,7 +19,6 @@ public class QAJobsPage {
     private By departmentFilter = By.id("select2-filter-by-department-container");
     private By departmentOptions = By.xpath("//ul[@id='select2-filter-by-department-results']//li[contains(@class, 'select2-results__option')]");
     private By jobList =By.cssSelector(".position-list-item-wrapper");
-    private By viewRoleButton = By.xpath("//*[@id=\"jobs-list\"]/div[1]/div/a");
 
 
     // Constructor
@@ -46,7 +45,6 @@ public class QAJobsPage {
             }
         }
 
-        // Department filter alanına tıkla
         driver.findElement(departmentFilter).click();
 
         // Department listesinde verilen department değerini seç
