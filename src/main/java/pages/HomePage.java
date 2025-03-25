@@ -9,7 +9,7 @@ public class HomePage {
 
     // Locators
     private By companyMenu = By.xpath("//a[@id='navbarDropdownMenuLink' and contains(text(), 'Company')]");
-    private By careersOption = By.xpath("//a[contains(@href, '/careers/') and text()='Careers']");
+    private By careersOptions = By.xpath("//a[contains(@href, '/careers/') and text()='Careers']");
 
 
     // Constructor
@@ -20,7 +20,7 @@ public class HomePage {
     // Actions
     public void navigateToCareers() {
         driver.findElement(companyMenu).click();
-        driver.findElement(careersOption).click();
+        driver.findElement(careersOptions).click();
     }
 
     // Title'a göre kontrol
